@@ -17,7 +17,7 @@ string Choices(string prompt)
 {
 	string answer = "";
 	bool isValid = false;
-
+	 
 	do
 	{
 		cout << prompt;
