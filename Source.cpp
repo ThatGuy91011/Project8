@@ -1,61 +1,260 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <stdlib.h>
 using namespace std;
 
 string answer;
-void Intro();
+string Intro();
+string OpenDoor1();
+string OpenDoor2();
+void OpenRightDoor();
+void OpenLeftDoor();
+void OpenStraightDoor();
+string Look();
+string Keypad();
+void Wait();
+void Invalid();
+void End1();
+void End2();
+void End3();
+void End4();
+void TrueEnd();
 
-int main()
-{
-	Intro();
-	system("pause");
-	return 0;
-}
 
-string Choices(string prompt)
-{
-	string answer = "";
-	bool isValid = false;
-	 
-	do
+
+	string GetTextFromUser(string prompt)
 	{
-		cout << prompt;
-		cin >> answer;
-		answer = toupper(answer);
-		if (answer == "")
+		string answer = "";
+		bool isValid = false;
+
+		do
 		{
-			cout << "Invalid answer, try again" << endl;
+			cout << prompt;
+			cin >> answer;
+			if (answer == "")
+			{
+				cout << "Invalid answer, try again" << endl;
+				isValid = false;
+			}
+			else
+			{
+				isValid = true;
+
+				return answer;
+			}
+		} while (isValid == false);
+	}
+
+	bool GetNumbersFromUser(string prompt)
+	{
+		int code;
+		bool isValid = false;
+
+		cout << prompt;
+		cin >> code;
+		if (code == 6180)
+		{
+			isValid = true;
+			return isValid;
+		}
+
+		else
+		{
 			isValid = false;
+			return isValid;
+		}
+	
+	}
+	void End1()
+	{
+		cout << "***Ending 1: Patience is a Virtue...Sometimes***" << endl << "GAME OVER!" << endl << "As you fall through the endless void of the afterlife, a single digit flashes into your mind: 6" << endl;
+	}
+
+	void End2()
+	{
+		cout << "***Ending 2: The Blue Pill....or was it the Red Pill?***" << endl << "GAME OVER!" << endl << "As you fall through the endless void of the afterlife, a single digit flashes into your mind: 1" << endl;
+	}
+
+	void End3()
+	{
+		cout << "***Ending 3: The Stanford Tale***" << endl << "GAME OVER!" << endl << "As you fall through the endless void of the afterlife, a single digit flashes into your mind: 8" << endl;
+	}
+	void End4()
+	{
+		cout << "***Ending 4: Meet the Developers***" << endl << "GAME OVER!" << endl << "As you fall through the endless void of the afterlife, a single digit flashes into your mind: 0" << endl;
+	}
+	void TrueEnd()
+	{
+		cout << "A panel above the keypad lowers, revealing another screen that says: " << endl;
+		cout << "Congratulations! You have reached the True Ending! Feel free to quit the game at any time, and thank you for playing!" << endl << endl;
+		cout << "***Ending 5: The End***" << endl << "THANK YOU SO MUCH FOR TO PLAYING MY GAME!";
+		exit(EXIT_FAILURE);
+	}
+	string Keypad()
+	{
+		bool code;
+		cout << "What will you enter?" << endl;
+		code = GetNumbersFromUser("I will enter: ");
+		if (code == true)
+		{
+			TrueEnd();
+			return 0;
 		}
 		else
 		{
-			isValid = true;
-			
+			cout << "The keypad flashes a red light and the numbers disappear, making sure you can't use it again. You seem to have entered in an incorrect code." << endl;
+			cout << "A. Open the door\nB. Wait" << endl;
+			answer = GetTextFromUser("I choose option: ");
 			return answer;
 		}
-	} while (isValid == false);
-}
+	}
+	void Invalid()
+	{
+		cout << "Sorry, you don't seem to understand how these things work. Goodbye" << endl;
+	}
+	string OpenDoor1()
+	{
+		cout << "You open the door and enter...another room? It looks identical to the first one in every way..." << endl;
+		cout << "A. Open the door\nB. Wait" << endl;
+		answer = GetTextFromUser("I choose option: ");
+		return answer;
+	}
 
-void OpenDoor1()
-{
+	void OpenStraightDoor()
+	{
+		cout << "When you step through the door, you are greeted to a row of monitors. None of them seem to be on except for one in the corner. You walk over to it and find a small white dog working at the computer, working on what seems to be a game. It seems as though it's hard at work. When the dog finally spots you, he frantically types on the keyboard. You see him type 'End4(--" << endl;
+		End4();
+	}
+	void OpenLeftDoor()
+	{
+		cout << "As soon as you step through the door, you feel as though you awaken from a dream. Around you are people in pods, and you soon realize that you yourself are in a pod. You then realize this seems strikingly similar to The Matrix, but since you've never seen the movie, you make no further connections and die from a stray electrical wire." << endl;
+		End2();
+	}
+
+	void OpenRightDoor()
+	{
+		cout << "'This was not the correct way to the meeting room, and Stanley knew it perfectly well. Perhaps he wanted to stop by the employee lounge first, just to admire-Wait you're not Stanley, what am I doing here? Stay in your game! I'm going back to mine.'" << endl;
+		cout << "With no one to guide you, you soon lose meaning in the grand scheme of the universe and fade into non-existence." << endl;
+		End3();
+	}
+	string OpenDoor2()
+	{
+		cout << "Alright, now this is worse. In front of you is a room identical to the other two, but now there are 3 doors, one on each wall in front, to the right, and to the left of you. What will you do?" << endl;
+		cout << "A. Open the left door\nB. Open the right door\nC. Open the straight door\nD. Wait" << endl;
+		answer = GetTextFromUser("I choose option: ");
+		return answer;
+	}
+
+	string Look()
+	{
+		cout << "Other than the door, there is only a single keypad with a screen above it. There are no windows or other means of escape." << endl;
+		cout << "A. Open the door\nB. Enter a number into the keypad\nC. Wait" << endl;
+		answer = GetTextFromUser("I choose option: ");
+		return answer;
+	}
+	 
+	void Wait()
+	{
+		cout << "You wait." << endl << endl << endl << "And wait." << endl << endl << endl << endl << endl << "And wait....Until you die of starvation." << endl;
+		End1();
+	}
+	string Intro()
+	{
+		cout << "You find yourself in a room with only one door in front of you. You have no memory of how yo got here. What do you do?" << endl;
+		cout << "A. Open the door\nB. Look around the room some more\nC. Wait" << endl;
+		answer = GetTextFromUser("I choose option: ");
+		return answer;
+	}
+
+	int main()
+	{
+		Intro();
+		if (answer == "a" || answer == "A")
+		{
+			OpenDoor1();
+			if (answer == "a" || answer == "A")
+			{
+				OpenDoor2();
+				if (answer == "a" || answer == "A")
+				{
+					OpenLeftDoor();
+				}
+
+				else if (answer == "b" || answer == "B")
+				{
+					OpenRightDoor();
+				}
+
+				else if (answer == "c" || answer == "C")
+				{
+					OpenStraightDoor();
+				}
+
+				else if (answer == "d" || answer == "D")
+				{
+					Wait();
+				}
+				else
+				{
+					Invalid();
+
+				}
+			}
+			else if (answer == "b" || answer == "B")
+			{
+				Wait();
+			}
+
+			else
+			{
+				Invalid();
+			}
+		}
+
+		else if (answer == "b" || answer == "B")
+		{
+			Look();
+			if (answer == "a" || answer == "A")
+			{
+				OpenDoor1();
+			}
+
+			else if (answer == "b" || answer == "B")
+			{
+				Keypad();
+				if (answer == "a" || answer == "A")
+				{
+					OpenDoor1();
+				}
+
+				else if (answer == "b" || answer == "B")
+				{
+					Wait();
+				}
+			}
+
+			else if (answer == "c" || answer == "C")
+			{
+				Wait();
+			}
+
+			else
+			{
+				Invalid();
+			}
+		}
 	
-}
+			else if (answer == "c" || answer == "C")
+			{
+				Wait();
+			}
 
-void Look()
-{
+			else
+			{
+				Invalid();
+			}
+			system("pause");
+			return 0;
+		}
 	
-}
-
-void Wait()
-{
-	
-}
-void Intro()
-{
-	cout << "\tYou find yourself in a room with only one door in front of you. You have no memory of how yo got here. What do you do?" << endl;
-	cout << "A. Open the door\nB. Look around the room some more\nC. Wait" << endl;
-	answer = Choices("I choose option: ");
-	cout << answer;
-}
-
